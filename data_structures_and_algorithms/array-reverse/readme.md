@@ -9,10 +9,10 @@ Write a function called reverseArray which takes an array as an argument. Withou
 <!-- What approach did you take?
  Discuss Why. What is the Big O space/time for this approach? -->
  Algorithem
-* def function with one argument 
-* def empty array (return array )
-* loop with range equal array length 
-* insert last element in new array as first element (index = lenght -1-i)
+* def function with one argument(array) 
+* def reverse array equal input array
+* loop with range equal array length -1
+* reasign first element in new array as last element from input array 
 * return new(reverse ) array 
 * call feunc 
 
