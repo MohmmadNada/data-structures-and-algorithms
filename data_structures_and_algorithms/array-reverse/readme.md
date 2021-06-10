@@ -3,7 +3,7 @@
 Write a function called reverseArray which takes an array as an argument. Without utilizing any of the built-in methods available to your language, return an array with elements in reversed order.
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
-![image info](array_reverse.PNG)
+![image info](CC1.PNG)
 
 ## Approach & Efficiency
 <!-- What approach did you take?
