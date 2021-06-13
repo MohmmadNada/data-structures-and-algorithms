@@ -10,7 +10,7 @@
 '''
 class Node:
     '''
-    Class for the Node instances
+    Node class that has properties for the value stored in the Node, and a pointer to the next Node(next).
     '''
     def __init__(self,value=None):
         self.value = value
@@ -52,28 +52,32 @@ class LinkedList:
         '''
         current =self.head 
         linkListString=''
-        while current :
-        
-            linkListString += str(current.value)
-            current=current.next
+        # print(current)
+        # print('current')
+        while True :
+            if current != None:
+                linkListString += '{ '+str(current.value)+' } -> ' 
+                current=current.next
+            elif current == None:
+                linkListString +=  'NULL'
+                break
         return linkListString
 
 if __name__=='__main__':
    ll=LinkedList()#we create empty list new 
-   #show what inside 
-   print('********** head -> none')
-   print(ll.head)#==>none
-   ll.insert('1111100')
-   print('********** ')
-   print(ll.head.value,'----',ll.head.next)#==>a , none 
-   print('********** ')
-   ll.insert('aa0')
-   print(ll.head.value)#aa
-   print(ll.head.next.value)#a
-   print(ll.head.next.next)#none
-   print('********** ********** * ** ** * ** ')
-   print(ll.includes('a'))
-   print(ll.includes('as'))
+#    #show what inside 
+#    print('********** head -> none')
+#    print(ll.head)#==>none
+   ll.insert('a')
+#    print(ll.head.value,'----',ll.head.next)#==>a , none 
+   ll.insert('50')
+   ll.insert('cc')
+# #    print(ll.head.value)#aa
+# #    print(ll.head.next.value)#a
+# #    print(ll.head.next.next)#none
+# #    print(ll.includes('c'))
+# #    print(ll.includes('b'))
+#    print('********** ********** * ** ** * ** ')
    print(str(ll))
 
 

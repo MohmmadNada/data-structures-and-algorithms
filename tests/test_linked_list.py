@@ -69,13 +69,13 @@ def test_false_not_existing():
     include01=ll.includes('105')
     assert include01 == False
 
-# def test_collection():
-#     '''
-#     7. Can properly return a collection of all the values that exist in the linked list
-#     '''
-#     LinkedList().insert('a')
-#     LinkedList().insert('50')
-#     LinkedList().insert('cc')
-#     LinkedList().__str__() == " a, 50 , cc "
-#     # LinkedList().__repr__() == " a, 50 , cc "
-#     pass
+def test_collection():
+    '''
+    7. Can properly return a collection of all the values that exist in the linked list
+    '''
+    ll=LinkedList()
+    ll.insert('a')
+    ll.insert('50')
+    ll.insert('cc')
+    assert str(ll) == "{ cc } -> { 50 } -> { a } -> NULL"
+     
