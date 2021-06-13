@@ -11,3 +11,6 @@ hard two deal with two class and get what are looking for ,
 after search and TA support I found the way 
 ## API
 <!-- Description of each method publicly available to your Linked List -->
+
+PR 
+[PR1](https://github.com/MohmmadNada/data-structures-and-algorithms/pull/7)
