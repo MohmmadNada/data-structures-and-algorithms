@@ -26,6 +26,12 @@ def test_insert_before(append_fixture):
     ll.insertBefore('d','beforebefore')
     assert str(ll)=='{ C2 } -> { before } -> { beforebefore } -> { d } -> { c } -> { a } -> { last } -> NULL'
 
+def test_insert_after(append_fixture):
+    ll.insertAfter('c','afterC')
+    assert str(ll)=='{ C2 } -> { before } -> { beforebefore } -> { d } -> { c } -> { afterC } -> { a } -> { last } -> NULL'
+    ll.insertAfter('not in element','add')
+    assert str(ll)=='{ C2 } -> { before } -> { beforebefore } -> { d } -> { c } -> { afterC } -> { a } -> { last } -> NULL'
+
 
 
 

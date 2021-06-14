@@ -96,11 +96,22 @@ class LinkedList:
                     current=current.next
         else:
             return 'This item does not exist'
-    def insertAfter(value, newVal):
+    def insertAfter(self,value, newVal):
         '''
         add a new node with the given newValue immediately after the first value node
         '''
-        pass
+        if self.includes(value):
+            current=self.head
+            while current :
+                if current.value==value:
+                    new_node=Node(newVal)
+                    new_node.next=current.next
+                    current.next=new_node
+                    break
+                current=current.next
+        else:
+            return 'not found value to insert after it '
+        
 if __name__=='__main__':
     ll=LinkedList()#we create empty list new 
 #    #show what inside 
@@ -120,5 +131,8 @@ if __name__=='__main__':
     # print(str(ll))#{ cc } -> { 50 } -> { a } -> { last } -> NULL
     ll.insertBefore('50','before')
     print(str(ll))#{ cc } -> { before } -> { 50 } -> { a } -> { last } -> NULL
+    ll.insertAfter('before','after')
+    # ll.insertAfter('beforess','after')# not found
+    print('after insert\n',str(ll))#{ cc } -> { before } -> { after } -> { 50 } -> { a } -> { last } -> NULL
     
 
