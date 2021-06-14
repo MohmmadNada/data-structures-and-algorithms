@@ -1,9 +1,9 @@
 import re
 from typing import Counter
-from data_structures_and_algorithms.linked_list.linked_list import LinkedList,Node
+from data_structures_and_algorithms.Data_Structures.linked_list.linked_list import LinkedList,Node
 import pytest
 '''
-CC6 test 
+CC6 test /home/mohammad/401/data-structures-and-algorithms/data-structures-and-algorithms/data_structures_and_algorithms/Data_Structures/linked_list/linked_list.py
 1. Can successfully add a node to the end of the linked list
 2. Can successfully add multiple nodes to the end of a linked list
 3. Can successfully insert a node before a node located i the middle of a linked list

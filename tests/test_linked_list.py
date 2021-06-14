@@ -1,4 +1,4 @@
-from data_structures_and_algorithms.linked_list.linked_list import LinkedList,Node
+from data_structures_and_algorithms.Data_Structures.linked_list.linked_list import LinkedList,Node
 '''
 1. Can successfully instantiate an empty linked list (Done)
 2. Can properly insert into the linked list

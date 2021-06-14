@@ -11,6 +11,12 @@ hard two deal with two class and get what are looking for ,
 after search and TA support I found the way 
 ## API
 <!-- Description of each method publicly available to your Linked List -->
+* insert method :add a new node with an O(1) efficiency in the first 
+* includes method : check if the value is availble in the LL or not by return (True or false)
+* __str__ method : string representing all the values in the Linked List
+
+
 
 PR 
 [PR1](https://github.com/MohmmadNada/data-structures-and-algorithms/pull/7)
+
