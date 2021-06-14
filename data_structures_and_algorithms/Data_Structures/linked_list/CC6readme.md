@@ -23,3 +23,18 @@ white-board:
 ![img1](/img/CC6_1.PNG)
 ![img2](/img/CC6_2.PNG)
 ![img3](/img/CC6_3.PNG)
+
+## Solution
+<!-- Show how to run your code, and examples of it in action -->
+ ll=LinkedList() #we create empty list new 
+    ll.insert('a')
+    ll.insert('50')
+    ll.insert('cc')
+    ll.append('last')
+    output / print(str(ll))/ { cc } -> { 50 } -> { a } -> { last } -> NULL
+    ll.insertBefore('50','before')
+    print(str(ll))output/{ cc } -> { before } -> { 50 } -> { a } -> { last } -> NULL
+    ll.insertAfter('before','after')
+    print(str(ll))#{ cc } -> { before } -> { after } -> { 50 } -> { a } -> { last } -> NULL
+    
+
