@@ -19,16 +19,16 @@ class Node:
     '''
     Node class that has properties for the value stored in the Node, and a pointer to the next Node(next).
     '''
-    numbers_of_nodes=0
     def __init__(self,value=None):
         self.value = value
         self.next = None  
-        Node.numbers_of_nodes+=1     
 
 class LinkedList:
     '''
     class for linked list instance 
     '''
+#-----------------------------------------CC5----------------------------#
+
     def __init__(self):
         '''
         empty list should be created
@@ -82,8 +82,7 @@ class LinkedList:
             current.next=new_node
             new_node.next=None
         else :
-            self.head=new_node
-        
+            self.head=new_node      
     def insertBefore(self,value, newVal):
         '''
         add a new node with the given newValue immediately before the first value node
@@ -122,23 +121,33 @@ class LinkedList:
                 current=current.next
         else:
             return 'not found value to insert after it '
+    def __len__(self):
+        current = self.head
+        length = 0
+        while current:
+                length+=1
+                current=current.next
+        return length
     def kthFromEnd(self,k):
         '''
         Write a method for the Linked List class which takes a number, k, as a parameter. Return the node’s value that is k from the end of the linked list. You have access to the Node class and all the properties on the Linked List class as well as the methods created in previous challenges.
-
         '''
-        if k<Node.numbers_of_nodes:
-            
-            length= Node.numbers_of_nodes-1
-            # print(length+1)
-            if length+1>k:
-                current=self.head
-                for x in range(0,length-k):
-                    current=current.next
-                return current.value
-        else:
-            raise Exception("k not in the range")
-            
+        current = self.head
+        length=len(self)
+        # while current:
+        #     length+=1
+        #     current=current.next
+        # current=self.head
+        if not -length < k < length:
+            raise Exception(' this K value is put of range ')
+        else :
+            if k<0:
+                k=abs(k)
+            steps= length-k-1
+            for x in range(steps):
+                current = current.next
+            return current.value
+        
         
 if __name__=='__main__':
 #     ll=LinkedList()#we create empty list new 
@@ -171,11 +180,12 @@ if __name__=='__main__':
     ll.insert('50')
     ll.append('last')# { 50 } -> { a } -> { last } -> NULL
     print(str(ll))
-    print(ll.kthFromEnd(0))
-    print(ll.kthFromEnd(1))
-    print(ll.kthFromEnd(2))
-    print(ll.kthFromEnd(3))
-    # print(ll.kthFromEnd(4))
+    print('the lenght is --- ',len(ll))
+    # print(ll.kthFromEnd(0))# { last } 
+    # print(ll.kthFromEnd(1))# 
+    # print(ll.kthFromEnd(2))# 
+    # print(ll.kthFromEnd(3)) #{ 50 } 
+    # print(ll.kthFromEnd(4)) # out of range
     # print(ll.kthFromEnd(10))
     # ll.insert('a')
     # ll.insert('0')

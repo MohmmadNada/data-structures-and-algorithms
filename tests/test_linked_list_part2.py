@@ -1,5 +1,3 @@
-import re
-from typing import Counter
 from data_structures_and_algorithms.Data_Structures.linked_list.linked_list import LinkedList,Node
 import pytest
 '''
