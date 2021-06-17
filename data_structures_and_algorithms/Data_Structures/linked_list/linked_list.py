@@ -9,6 +9,9 @@ CC5:
 3. Any exceptions or errors that come from your code should be semantic, capturable errors. For example, rather than a default error thrown by your language, your code should raise/throw a custom, semantic error that describes what went wrong in calling the methods you wrote for this lab.
 4. Be sure to follow your language/frameworks standard naming conventions (e.g. C# uses PascalCasing for all method and class names).
 '''
+from inspect import EndOfBlock
+
+
 class Node:
     '''
     Node class that has properties for the value stored in the Node, and a pointer to the next Node(next).
@@ -108,6 +111,10 @@ class LinkedList:
                     new_node.next=current.next
                     current.next=new_node
                     break
+                elif current.next ==None:
+                    print('--------------------  115 -----------')
+                    new_node=Node(newVal)
+                    current.next=new_node
                 current=current.next
         else:
             return 'not found value to insert after it '
@@ -130,9 +137,10 @@ if __name__=='__main__':
     ll.append('last')
     # print(str(ll))#{ cc } -> { 50 } -> { a } -> { last } -> NULL
     ll.insertBefore('50','before')
-    print(str(ll))#{ cc } -> { before } -> { 50 } -> { a } -> { last } -> NULL
+    # print(str(ll))#{ cc } -> { before } -> { 50 } -> { a } -> { last } -> NULL
     ll.insertAfter('before','after')
     # ll.insertAfter('beforess','after')# not found
     print('after insert\n',str(ll))#{ cc } -> { before } -> { after } -> { 50 } -> { a } -> { last } -> NULL
-    
+    ll.insertAfter('last','after last')
+    print(str(ll))
 
