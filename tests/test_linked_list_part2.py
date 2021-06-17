@@ -1,7 +1,5 @@
 import re
 from typing import Counter
-
-from _pytest.outcomes import Skipped
 from data_structures_and_algorithms.Data_Structures.linked_list.linked_list import LinkedList,Node
 import pytest
 '''
@@ -34,21 +32,9 @@ def test_insert_after(append_fixture):
     ll.insertAfter('not in element','add')
     assert str(ll)=='{ C2 } -> { before } -> { beforebefore } -> { d } -> { c } -> { afterC } -> { a } -> { last } -> NULL'
 
-def test_insert_before_head(append_fixture):
-    '''
-    insert a node before the first node of a linked list
-    '''
-# { C2 } -> { before } -> { beforebefore } -> { d } -> { c } -> { afterC } -> { a } -> { last } -> NULL 
-    ll.insertBefore('C2','head insert item')
-    actual =str(ll) 
-    expected = '{ head insert item } -> { C2 } -> { before } -> { beforebefore } -> { d } -> { c } -> { afterC } -> { a } -> { last } -> NULL'
-    assert actual ==expected
-def test_inseert_at_last(append_fixture):
-    #2. Can successfully insert a node after the last node of the linked list , by insert after 
-    ll.insertAfter('last','newlastitem')
-    actual = str(ll)
-    expected='{ head insert item } -> { C2 } -> { before } -> { beforebefore } -> { d } -> { c } -> { afterC } -> { a } -> { last } -> { newlastitem } -> NULL'
-    assert actual==expected 
+
+
+
 @pytest.fixture
 def append_fixture(): 
     ll=LinkedList()
