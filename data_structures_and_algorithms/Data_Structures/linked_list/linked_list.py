@@ -9,7 +9,10 @@ CC5:
 3. Any exceptions or errors that come from your code should be semantic, capturable errors. For example, rather than a default error thrown by your language, your code should raise/throw a custom, semantic error that describes what went wrong in calling the methods you wrote for this lab.
 4. Be sure to follow your language/frameworks standard naming conventions (e.g. C# uses PascalCasing for all method and class names).
 '''
-from inspect import EndOfBlock
+from inspect import EndOfBlock, currentframe
+import re
+
+from _pytest.python_api import raises
 
 
 class Node:
@@ -18,12 +21,14 @@ class Node:
     '''
     def __init__(self,value=None):
         self.value = value
-        self.next = None       
+        self.next = None  
 
 class LinkedList:
     '''
     class for linked list instance 
     '''
+#-----------------------------------------CC5----------------------------#
+
     def __init__(self):
         '''
         empty list should be created
@@ -77,8 +82,7 @@ class LinkedList:
             current.next=new_node
             new_node.next=None
         else :
-            self.head=new_node
-        
+            self.head=new_node      
     def insertBefore(self,value, newVal):
         '''
         add a new node with the given newValue immediately before the first value node
@@ -112,35 +116,79 @@ class LinkedList:
                     current.next=new_node
                     break
                 elif current.next ==None:
-                    print('--------------------  115 -----------')
                     new_node=Node(newVal)
                     current.next=new_node
                 current=current.next
         else:
             return 'not found value to insert after it '
+    def __len__(self):
+        current = self.head
+        length = 0
+        while current:
+                length+=1
+                current=current.next
+        return length
+    def kthFromEnd(self,k):
+        '''
+        Write a method for the Linked List class which takes a number, k, as a parameter. Return the node’s value that is k from the end of the linked list. You have access to the Node class and all the properties on the Linked List class as well as the methods created in previous challenges.
+        '''
+        current = self.head
+        length=len(self)
+        # while current:
+        #     length+=1
+        #     current=current.next
+        # current=self.head
+        if not -length < k < length:
+            raise Exception(' this K value is put of range ')
+        else :
+            if k<0:
+                k=abs(k)
+            steps= length-k-1
+            for x in range(steps):
+                current = current.next
+            return current.value
+        
         
 if __name__=='__main__':
-    ll=LinkedList()#we create empty list new 
-#    #show what inside 
-#    print('********** head -> none')
-#    print(ll.head)#==>none
-#    print(ll.head.value,'----',ll.head.next)#==>a , none 
+#     ll=LinkedList()#we create empty list new 
+# #    #show what inside 
+# #    print('********** head -> none')
+# #    print(ll.head)#==>none
+# #    print(ll.head.value,'----',ll.head.next)#==>a , none 
+#     ll.insert('a')
+#     ll.insert('50')
+#     ll.insert('cc')
+# # #    print(ll.head.value)#aa
+# # #    print(ll.head.next.value)#a
+# # #    print(ll.head.next.next)#none
+# # #    print(ll.includes('c'))
+# # #    print(ll.includes('b'))
+# #    print('********** ********** * ** ** * ** ')
+#     ll.append('last')
+#     # print(str(ll))#{ cc } -> { 50 } -> { a } -> { last } -> NULL
+#     ll.insertBefore('50','before')
+#     # print(str(ll))#{ cc } -> { before } -> { 50 } -> { a } -> { last } -> NULL
+#     ll.insertAfter('before','after')
+#     # ll.insertAfter('beforess','after')# not found
+#     # print('after insert\n',str(ll))#{ cc } -> { before } -> { after } -> { 50 } -> { a } -> { last } -> NULL
+#     ll.insertAfter('last','after last')
+#     print(str(ll))
+#     print(ll.kthFromEnd(6))
+    #     # ll.kthFromEnd(6)
+    ll=LinkedList()
     ll.insert('a')
     ll.insert('50')
-    ll.insert('cc')
-# #    print(ll.head.value)#aa
-# #    print(ll.head.next.value)#a
-# #    print(ll.head.next.next)#none
-# #    print(ll.includes('c'))
-# #    print(ll.includes('b'))
-#    print('********** ********** * ** ** * ** ')
-    ll.append('last')
-    # print(str(ll))#{ cc } -> { 50 } -> { a } -> { last } -> NULL
-    ll.insertBefore('50','before')
-    # print(str(ll))#{ cc } -> { before } -> { 50 } -> { a } -> { last } -> NULL
-    ll.insertAfter('before','after')
-    # ll.insertAfter('beforess','after')# not found
-    print('after insert\n',str(ll))#{ cc } -> { before } -> { after } -> { 50 } -> { a } -> { last } -> NULL
-    ll.insertAfter('last','after last')
+    ll.append('last')# { 50 } -> { a } -> { last } -> NULL
     print(str(ll))
-
+    print('the lenght is --- ',len(ll))
+    # print(ll.kthFromEnd(0))# { last } 
+    # print(ll.kthFromEnd(1))# 
+    # print(ll.kthFromEnd(2))# 
+    # print(ll.kthFromEnd(3)) #{ 50 } 
+    # print(ll.kthFromEnd(4)) # out of range
+    # print(ll.kthFromEnd(10))
+    # ll.insert('a')
+    # ll.insert('0')
+    # ll.insert('10')
+    # actual=ll.kthFromEnd(0)
+    
