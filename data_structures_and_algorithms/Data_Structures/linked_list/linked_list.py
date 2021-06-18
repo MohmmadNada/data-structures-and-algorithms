@@ -12,7 +12,7 @@ CC5:
 from inspect import EndOfBlock, currentframe
 import re
 
-from _pytest.python_api import raises
+# from _pytest.python_api import raises
 
 
 class Node:
