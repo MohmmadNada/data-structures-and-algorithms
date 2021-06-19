@@ -78,4 +78,3 @@ def test_collection():
     ll.insert('50')
     ll.insert('cc')
     assert str(ll) == "{ cc } -> { 50 } -> { a } -> NULL"
-     

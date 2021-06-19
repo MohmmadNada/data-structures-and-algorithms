@@ -10,6 +10,7 @@ Add new methods; get two Linked Lists as arguments , returns new Linkedlist have
 Big O time and space O(n) , depand on lenght
 ## Solution
 <!-- Show how to run your code, and examples of it in action -->
+[code link ](https://github.com/MohmmadNada/data-structures-and-algorithms/blob/ll-zip/data_structures_and_algorithms/challenges/ll_zip/ll_zip/ll_zip.py)
 ```
     ll_1=LinkedList()
     ll_1.append('5')
