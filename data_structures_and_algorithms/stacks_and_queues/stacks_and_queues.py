@@ -50,7 +50,7 @@ class Stack :
         2. Should raise exception when called on empty stack
         '''
         if self.isEmpty()==True:
-            return 'Oops , empty stock'
+            raise Exception('Oops , empty stock')
         # if self.top.value:
         else:
             temporary=self.top
