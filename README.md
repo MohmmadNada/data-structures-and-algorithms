@@ -9,3 +9,5 @@
 | CC8| [LL_zip](data_structures_and_algorithms/challenges/ll_zip/README.md)|
 | CC10| [Stock and Queue](data_structures_and_algorithms/stacks_and_queues/stack_and_queues.md)|
 | CC11| [Stock with Queue](data_structures_and_algorithms/challenges/queue_with_stacks/queue_with_stacks.md)|
+| CC12| [Stock with Queue](data_structures_and_algorithms/challenges/queue_with_stacks/queue_with_stacks.md)|
+| CC13| [Multi-bracket Validation.](data_structures_and_algorithms/challenges/multi_bracket_validation/multi_bracket_validation.md)|
