@@ -1,7 +1,10 @@
 # should add class node and LL from 
+from ..linked_list.linked_list import Node,LinkedList
 import re
 # from tests.test_stacks import test_empty_stock
-from data_structures_and_algorithms.Data_Structures.linked_list.linked_list import Node,LinkedList
+# import sys
+# sys.path.append('linked_list/linked_list.py')
+# import Node,LinkedList
 # class Node :
 #     '''
 #     Node class that has properties for the value stored in the Node, and a pointer to the next node.
