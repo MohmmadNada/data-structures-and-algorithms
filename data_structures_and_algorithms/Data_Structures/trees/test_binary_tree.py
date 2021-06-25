@@ -39,6 +39,16 @@ def test_preorder_traversal(test_fixure):
     excepted= 'rootItem left left_left left_left_left right right_left right_right '
     actual=test_fixure.preOrder()
     assert excepted==actual
+
+def test_inOrder_traversal(test_fixure):
+    excepted= 'left_left_left left_left left rootItem right_left right right_right '
+    actual=test_fixure.inOrder()
+    assert excepted==actual
+def test_postOrder_traversal(test_fixure):
+    excepted= 'left_left_left left_left left right_left right_right right rootItem '
+    actual=test_fixure.postOrder()
+    assert excepted==actual
+
 @pytest.fixture
 def test_fixure():
     btree=BinaryTree()
