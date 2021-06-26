@@ -8,7 +8,8 @@ build function takes a string as argument,  return a boolean representing whethe
 ![multi_bracket_validation](/img/multi_bracket_validation.PNG)
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
-approach , search for brackets in string and remove the close bracket after i found the open bracket
+approach , count the brackets and compare , between open and close with the same type .
+and use regex to chek if we have open in 
 TIME PigO(n)
 Space BigO(1)
 ## Solution

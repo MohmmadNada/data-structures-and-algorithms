@@ -22,7 +22,10 @@ def test_multi_bracket_validation_many_items_in_with_many_words():
     actual=multi_bracket_validation('{}{Code}[Fellows](())')   
     excepted=True
     assert actual==excepted
-
+def test_multi_bracket_validation_order():
+    actual=multi_bracket_validation('{}{Code}[Fellows](())')   
+    excepted=True
+    assert actual==excepted
 def test_multi_bracket_validation_many_items_False_case():
     actual=multi_bracket_validation('[({}]')   
     excepted=False
