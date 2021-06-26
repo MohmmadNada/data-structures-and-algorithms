@@ -45,7 +45,7 @@ def test_inOrder_traversal(test_fixure):
     actual=test_fixure.inOrder()
     assert excepted==actual
 def test_postOrder_traversal(test_fixure):
-    excepted= 'left_left_left left_left left right_left right_right right rootItem '
+    excepted= ['left_left_left ', 'left_left ', 'left ', 'right_left ', 'right_right ', 'right ', 'rootItem ']
     actual=test_fixure.postOrder()
     assert excepted==actual
 
