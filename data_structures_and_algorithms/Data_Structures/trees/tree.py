@@ -31,7 +31,6 @@ class Node:
         self.left=None
 
 class BinaryTree:
-
     def __init__(self):
         self.root=None
     def preOrder(self):
@@ -65,7 +64,7 @@ class BinaryTree:
         if self.root==None:
             return ''
         else: 
-            # @pysnooper.snoop()  
+              
             def _traverse(node):
                 nonlocal outputStr
                 if node.left:
@@ -91,30 +90,84 @@ class BinaryTree:
             _traverse(node)
         return outputStr
 
-
-
+# Binary Search Tree method needs ; Add and Contains
+class BinarySearch(BinaryTree):
+    # make the child class inherit all the methods and properties from its parent
+    # @pysnooper.snoop()
+    def add(self,value):
+        ''' Arguments: value
+            Return: nothing
+            Adds a new node with that value in the correct location in the binary search tree.
+        '''
+        if self.root == None:
+            # Case : empty Tree
+            newNode=Node(value)
+            self.root=newNode
+        elif self.root != None:
+            # Case : we Have not empty Tree 
+            newNode=Node(value)            
+            current=self.root
+            while True:
+                if newNode.value <= current.value:
+                    # less or equal , Go left side 
+                    if current.left:
+                        current=current.left
+                        continue
+                    else: 
+                        current.left=newNode
+                        break
+                if newNode.value > current.value:
+                    if current.right:
+                        current=current.right
+                        continue
+                    else: 
+                        current.right=newNode
+                        break
+    def contains(self,value):
+        '''
+        * Argument: value
+        * Returns: boolean indicating whether or not the value is in the tree at least once.
+        '''
+        checkValue=value # check with node.value
+        if self.root==None:
+            return False
+        elif self.root != None:
+            current=self.root
+            while True:
+                if current.value == checkValue:
+                    return True # will break the loop automaticly
+                if checkValue <= current.value:
+                    if current.left:
+                        current=current.left
+                        continue
+                    else: # no left 
+                        return False
+                if checkValue > current.value:
+                    if current.right:
+                        current=current.right
+                        continue
+                    else:# no right
+                        return False
 
 
 
 
 if __name__=='__main__':
-    Btree=BinaryTree()
-    # print(Btree.root)
-    Btree.root=Node('rootItem ')
-    # print('the root value is =>               ',Btree.root.value) # root 'rootItem'             
-    Btree.root.right=Node('rightRoot ')
-    Btree.root.left=Node('leftRoot ')
-    rightRoot=Btree.root.right
-    leftRoot=Btree.root.left
-    # print(leftRoot.value, '                             ********                ',rightRoot.value)
-    # print()
-    leftRoot.left=Node('left_left ')
-    leftRoot.right=Node('left_right ')
-    rightRoot.left=Node('right_left ')
-    rightRoot.right=Node('right_right ')
-    rightRoot.right.right=Node('right_right_right ')
-    # print(leftRoot.left.value , '     ',leftRoot.right.value, '         ***************         ',rightRoot.left.value,'     ',rightRoot.right.value)
-    # print(Btree.preOrder())
-    # Btree.inOrder()
-    # print(Btree.inOrder())
-    print(Btree.postOrder())
+    # Btree=BinaryTree()
+    BST=BinarySearch()
+    BST.root=Node(23)
+    BST.root.left=Node(8)
+    BST.root.right=Node(42)
+    leftRoot=BST.root.left# 8
+    rightRoot=BST.root.right# 42
+    leftRoot.left=Node(4)
+    leftRoot.right=Node(16)
+    leftRoot.right.left=Node(15)
+    leftRoot.right.right=Node(22)
+    BST.root.right.left=Node(27)# 42 27 
+    BST.root.right.right=Node(85)
+    BST.root.right.right.right=Node(105)
+    # print(BST.add(15)) # self.root = None ???
+    # print(BST.inOrder())
+    print(BST.contains(100))
+  
