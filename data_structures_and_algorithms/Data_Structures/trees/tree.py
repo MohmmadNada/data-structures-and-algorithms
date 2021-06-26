@@ -99,6 +99,8 @@ class BinarySearch(BinaryTree):
             Return: nothing
             Adds a new node with that value in the correct location in the binary search tree.
         '''
+        if type(value)!= type(5):
+            raise Exception('this value not number type , please input number only')
         if self.root == None:
             # Case : empty Tree
             newNode=Node(value)
@@ -128,6 +130,8 @@ class BinarySearch(BinaryTree):
         * Argument: value
         * Returns: boolean indicating whether or not the value is in the tree at least once.
         '''
+        if type(value)!= type(5):
+            raise Exception('this value not number type , please input number only')
         checkValue=value # check with node.value
         if self.root==None:
             return False
@@ -151,7 +155,6 @@ class BinarySearch(BinaryTree):
 
 
 
-
 if __name__=='__main__':
     # Btree=BinaryTree()
     BST=BinarySearch()
@@ -167,7 +170,7 @@ if __name__=='__main__':
     BST.root.right.left=Node(27)# 42 27 
     BST.root.right.right=Node(85)
     BST.root.right.right.right=Node(105)
-    # print(BST.add(15)) # self.root = None ???
-    # print(BST.inOrder())
-    print(BST.contains(100))
+    print(BST.add('15')) # self.root = None ???
+    # print(BST.inOrder()) # 4815162223274285105
+    # print(BST.contains(100))
   

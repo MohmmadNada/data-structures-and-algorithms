@@ -1,5 +1,5 @@
 import pytest
-from tree import Node , BinaryTree
+from tree import Node , BinaryTree,BinarySearch
 
 def test_instance_empty_tree():
     '''
