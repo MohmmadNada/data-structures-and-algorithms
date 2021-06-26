@@ -76,19 +76,20 @@ class BinaryTree:
         return outputStr
     def postOrder(self):
         node=None or self.root 
-        outputStr=''
+        # outputStr=''
+        outputArr=[]
         if node!=None:
             # left >> right >> root
             def _traverse(node):
-                nonlocal outputStr
+                nonlocal outputArr
                 if node.left:
                     _traverse(node.left)
                 if node.right:
                     _traverse(node.right)
-                outputStr+=str(node.value)
-                return outputStr
+                outputArr=outputArr+ [str(node.value)]
+                return outputArr
             _traverse(node)
-        return outputStr
+        return outputArr
 
 # Binary Search Tree method needs ; Add and Contains
 class BinarySearch(BinaryTree):
@@ -170,7 +171,7 @@ if __name__=='__main__':
     BST.root.right.left=Node(27)# 42 27 
     BST.root.right.right=Node(85)
     BST.root.right.right.right=Node(105)
-    print(BST.add('15')) # self.root = None ???
-    # print(BST.inOrder()) # 4815162223274285105
+    # print(BST.add('15')) # self.root = None ???
+    print(BST.postOrder()) # 4815162223274285105
     # print(BST.contains(100))
   
