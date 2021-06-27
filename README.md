@@ -12,3 +12,4 @@
 | CC12| [Stock with Queue](data_structures_and_algorithms/challenges/queue_with_stacks/queue_with_stacks.md)|
 | CC13| [Multi-bracket Validation.](data_structures_and_algorithms/challenges/multi_bracket_validation/multi_bracket_validation.md)|
 | CC15| [Binary Tree and BST Implementation](data_structures_and_algorithms/Data_Structures/trees/treeREADME.md)|
+| CC16| [Find the Maximum Value in a Binary Tree](data_structures_and_algorithms/Data_Structures/trees/find_max_tree.md)|

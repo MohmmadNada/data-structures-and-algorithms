@@ -90,7 +90,34 @@ class BinaryTree:
                 return outputArr
             _traverse(node)
         return outputArr
+    def find_max_value(self):
+        '''
+        find maximum value
+        Arguments: none
+        Returns: number
+        Find the maximum value stored in the tree. You can assume that the values stored in the Binary Tree will be numeric.
+        '''
+        outputArr=[]
+        if self.root ==None:
+            '''
+            empty tree 
+            '''
+            return 'Oops, empty binary tree '
 
+        else:
+            '''
+            not empty tree case . 
+            '''
+            def _traverse(node=self.root):
+                nonlocal outputArr
+                outputArr.append(node.value)
+                if node.left:
+                    _traverse(node.left)
+                if node.right:
+                    _traverse(node.right)
+                return outputArr
+            _traverse()
+        return max(outputArr)
 # Binary Search Tree method needs ; Add and Contains
 class BinarySearch(BinaryTree):
     # make the child class inherit all the methods and properties from its parent
@@ -174,4 +201,4 @@ if __name__=='__main__':
     # print(BST.add('15')) # self.root = None ???
     print(BST.postOrder()) # 4815162223274285105
     # print(BST.contains(100))
-  
+    
