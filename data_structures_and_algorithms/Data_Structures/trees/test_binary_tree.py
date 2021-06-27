@@ -49,6 +49,33 @@ def test_postOrder_traversal(test_fixure):
     actual=test_fixure.postOrder()
     assert excepted==actual
 
+def test_find_max(test_fixture_find_max):
+    actual = test_fixture_find_max.find_max_value()
+    axcepted = 151
+    assert actual == axcepted
+
+def test_find_max_empty_tree():
+    actual = BinaryTree().find_max_value()
+    excepted = 'Oops, empty binary tree '
+    assert actual  == excepted
+
+@pytest.fixture
+def test_fixture_find_max():
+    Btree=BinaryTree()
+    Btree.root=Node(2)
+    Btree.root.left=Node(18)
+    Btree.root.right=Node(22)
+    leftRoot=Btree.root.left
+    leftRoot.left=Node(43)
+    leftRoot.right=Node(6)
+    leftRoot.right.left=Node(11)
+    leftRoot.right.right=Node(22)
+    Btree.root.right.left=Node(37)
+    Btree.root.right.right=Node(51)
+    Btree.root.right.right.right=Node(151)
+    return Btree
+
+
 @pytest.fixture
 def test_fixure():
     btree=BinaryTree()
