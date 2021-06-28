@@ -87,3 +87,28 @@ def test_fixure():
     btree.root.right.left=Node('right_left ')# rightRootItem
     btree.root.right.right=Node('right_right ')# rightRootItem
     return btree
+# ------------------CC17 test -----------------
+
+def test_breath_first_Happy_Path(test_tree_breadth_first):
+    actual = test_tree_breadth_first.breadthFirst(test_tree_breadth_first)
+    excepted =[2, 7, 5, 2, 6, 9, 5, 11, 4]
+    assert actual ==excepted
+def test_breath_first_Happy_Path():
+    Btree=BinaryTree()
+    actual= Btree.breadthFirst(Btree)
+    excepted = 'Empty Tree'
+    assert actual ==excepted
+    
+@pytest.fixture
+def test_tree_breadth_first():
+    Btree=BinaryTree()
+    Btree.root=Node(2)
+    Btree.root.left=Node(7)
+    Btree.root.left.left=Node(2)
+    Btree.root.left.right=Node(6)
+    Btree.root.left.right.right=Node(11)
+    Btree.root.left.right.left=Node(5)
+    Btree.root.right=Node(5)
+    Btree.root.right.right=Node(9)
+    Btree.root.right.right.left=Node(4)
+    return Btree

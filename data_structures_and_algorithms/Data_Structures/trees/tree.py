@@ -118,6 +118,28 @@ class BinaryTree:
                 return outputArr
             _traverse()
         return max(outputArr)
+    @staticmethod
+    def breadthFirst (tree):
+        if tree.root== None:
+            return 'Empty Tree'
+        else: 
+            resultValues ,tempNodes = [],[]
+            tempNodes.append(tree.root)
+            resultValues.append(tree.root.value)
+            currentNode = tree.root
+            while currentNode:
+                tempNodes.pop(0) 
+                if currentNode.left:
+                    resultValues.append(currentNode.left.value)
+                    tempNodes.append(currentNode.left)
+                if currentNode.right:
+                    resultValues.append(currentNode.right.value)
+                    tempNodes.append(currentNode.right)
+                if len(tempNodes)==0:
+                    break
+                currentNode = tempNodes[0]
+                
+            return (resultValues)
 # Binary Search Tree method needs ; Add and Contains
 class BinarySearch(BinaryTree):
     # make the child class inherit all the methods and properties from its parent
@@ -184,21 +206,33 @@ class BinarySearch(BinaryTree):
 
 
 if __name__=='__main__':
-    # Btree=BinaryTree()
-    BST=BinarySearch()
-    BST.root=Node(23)
-    BST.root.left=Node(8)
-    BST.root.right=Node(42)
-    leftRoot=BST.root.left# 8
-    rightRoot=BST.root.right# 42
-    leftRoot.left=Node(4)
-    leftRoot.right=Node(16)
-    leftRoot.right.left=Node(15)
-    leftRoot.right.right=Node(22)
-    BST.root.right.left=Node(27)# 42 27 
-    BST.root.right.right=Node(85)
-    BST.root.right.right.right=Node(105)
-    # print(BST.add('15')) # self.root = None ???
-    print(BST.postOrder()) # 4815162223274285105
-    # print(BST.contains(100))
-    
+    # # Btree=BinaryTree()
+    # BST=BinarySearch()
+    # BST.root=Node(23)
+    # BST.root.left=Node(8)
+    # BST.root.right=Node(42)
+    # leftRoot=BST.root.left# 8
+    # rightRoot=BST.root.right# 42
+    # leftRoot.left=Node(4)
+    # leftRoot.right=Node(16)
+    # leftRoot.right.left=Node(15)
+    # leftRoot.right.right=Node(22)
+    # BST.root.right.left=Node(27)# 42 27 
+    # BST.root.right.right=Node(85)
+    # BST.root.right.right.right=Node(105)
+    # # print(BST.add('15')) # self.root = None ???
+    # print(BST.postOrder()) # 4815162223274285105
+    # # print(BST.contains(100))
+    # -------------- CC 17 
+    Btree=BinaryTree()
+    Btree=BinaryTree()
+    Btree.root=Node(2)
+    Btree.root.left=Node(7)
+    Btree.root.left.left=Node(2)
+    Btree.root.left.right=Node(6)
+    Btree.root.left.right.right=Node(11)
+    Btree.root.left.right.left=Node(5)
+    Btree.root.right=Node(5)
+    Btree.root.right.right=Node(9)
+    Btree.root.right.right.left=Node(4)
+    print(Btree.breadthFirst(Btree))
