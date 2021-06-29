@@ -10,4 +10,4 @@ check the root node , return empty in empty tree case
 loop through all nodes and put it in array and return max from the array 
 ## Solution
 <!-- Show how to run your code, and examples of it in action -->
-[you can check all code from here](./tree.py)
+[you can check all code from here ](./tree.py)
