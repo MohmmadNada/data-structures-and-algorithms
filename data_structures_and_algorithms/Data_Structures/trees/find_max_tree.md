@@ -3,7 +3,7 @@
 add the method which return the max node value from braimary tree 
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
-![find max](../../../img/max_tree.PNG)
+![find max](../../../img/maxTreeValue.PNG)
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
 check the root node , return empty in empty tree case
