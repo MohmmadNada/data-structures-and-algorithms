@@ -184,21 +184,35 @@ class BinarySearch(BinaryTree):
 
 
 if __name__=='__main__':
-    # Btree=BinaryTree()
-    BST=BinarySearch()
-    BST.root=Node(23)
-    BST.root.left=Node(8)
-    BST.root.right=Node(42)
-    leftRoot=BST.root.left# 8
-    rightRoot=BST.root.right# 42
+    # # Btree=BinaryTree()
+    # BST=BinarySearch()
+    # BST.root=Node(23)
+    # BST.root.left=Node(8)
+    # BST.root.right=Node(42)
+    # leftRoot=BST.root.left# 8
+    # rightRoot=BST.root.right# 42
+    # leftRoot.left=Node(4)
+    # leftRoot.right=Node(16)
+    # leftRoot.right.left=Node(15)
+    # leftRoot.right.right=Node(22)
+    # BST.root.right.left=Node(27)# 42 27 
+    # BST.root.right.right=Node(85)
+    # BST.root.right.right.right=Node(105)
+    # # print(BST.add('15')) # self.root = None ???
+    # print(BST.postOrder()) # 4815162223274285105
+    # print(BST.contains(100))
+    # ---------------- test CC17
+    Btree=BinaryTree()
+    Btree.root=Node(23)
+    Btree.root.left=Node(8)
+    Btree.root.right=Node(42)
+    leftRoot=Btree.root.left# 8
+    rightRoot=Btree.root.right# 42
     leftRoot.left=Node(4)
     leftRoot.right=Node(16)
     leftRoot.right.left=Node(15)
     leftRoot.right.right=Node(22)
-    BST.root.right.left=Node(27)# 42 27 
-    BST.root.right.right=Node(85)
-    BST.root.right.right.right=Node(105)
-    # print(BST.add('15')) # self.root = None ???
-    print(BST.postOrder()) # 4815162223274285105
-    # print(BST.contains(100))
-    
+    Btree.root.right.left=Node(270)# 42 27 
+    Btree.root.right.right=Node(15)
+    Btree.root.right.right.right=Node(0)
+    # print(Btree.find_max_value())
