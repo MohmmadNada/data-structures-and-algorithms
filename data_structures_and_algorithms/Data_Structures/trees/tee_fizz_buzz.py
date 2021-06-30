@@ -114,24 +114,23 @@ def  fizz_buzz_tree(tree):
     k=tree.maxNumbersOfChildern
     newKtree=k_ary_tree(k)
     queue=Queue()
-    if tree.root:# not empty tree
-        currentNode=tree.root
-        newValue=cahngeValue(currentNode.value)
-        newKtree.root=Node(newValue)
-        newTreeLevel=newKtree.root.Children# array 
-        queue.enqueue(currentNode)
-        while not queue.isEmpty():# not empty queue
-            queue.dequeue()# this return value , should I start from it ? 
-            if len(currentNode.Children)!=0:
-                for childNodes in currentNode.Children:
-                    print(childNodes.Children.append())
-                    # newTreeLevel.Children.append(Node(cahngeValue(childNodes.value)))
-                    # queue.enqueue(childNodes)
-                # currentNode=queue.front.value
-                # newTreeLevel=newTreeLevel.Children
+    if tree.root:
+        nowTree=[]
+        currentNode=tree.root 
+        newValue=cahngeValue(currentNode.value) 
+        oldTreeLevel=currentNode
+        queue.enqueue(currentNode)  
+        nowTree.append(cahngeValue(currentNode.value))
+        while not queue.isEmpty():
+            outNode=queue.dequeue()
+            if len(outNode.Children)!=0:
+                for childNodes in outNode.Children:
+                    queue.enqueue(childNodes)
+                    nowTree.append(cahngeValue(childNodes.value))
+        return nowTree          
 
 
-    else: 
+    else: # empty tree case
         return newKtree
          
 
@@ -149,29 +148,3 @@ if __name__=='__main__':
     kTree.root.Children[2].Children.append(Node('200'))
     print(fizz_buzz_tree(kTree))
 
-
-
-'''
-first version traverse 
-
-def  fizz_buzz_tree(tree):
-
-    
-    k=tree.maxNumbersOfChildern
-    newKtree=k_ary_tree(k)
-    queue=Queue()
-    if tree.root:# not empty tree
-        currentNode=tree.root
-        queue.enqueue(currentNode)
-        while not queue.isEmpty():# not empty queue
-            queue.dequeue()
-            if len(currentNode.Children)!=0:
-                for childNodes in currentNode.Children:
-                    queue.enqueue(childNodes)
-                currentNode=queue.front.value
-            
-
-    else: 
-        return newKtree
-
-'''
