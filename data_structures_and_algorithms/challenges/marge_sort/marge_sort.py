@@ -32,4 +32,3 @@ def marge(left,right,arr):
       for remain in left[i:]:
         arr[k] = remain
         k = k+1
-    print(arr)
