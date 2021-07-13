@@ -15,3 +15,4 @@
 | CC16| [Find the Maximum Value in a Binary Tree](data_structures_and_algorithms/Data_Structures/trees/find_max_tree.md)|Breadth-first
 | CC17| [Breadth-first](data_structures_and_algorithms/Data_Structures/trees/find_max_tree.md)|
 | CC26| [Marge sort](data_structures_and_algorithms/challenges/marge_sort/CC27READ.md)|
+| CC28| [Quick sort](data_structures_and_algorithms/challenges/quick_sort/readme_quick_sort.md)|
