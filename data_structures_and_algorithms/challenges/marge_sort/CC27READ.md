@@ -5,7 +5,10 @@ Review the pseudocode below, then trace the algorithm by stepping through the pr
 Once you are done with your article, code a working, tested implementation of Merge Sort based on the pseudocode provided.
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
-[BLOG](BLOG.md)
+
+![whiteborad1](/img/CC27/whiteborad27.PNG)
+
+![whiteborad2](/img/CC27/whiteborad27_part2.PNG)
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
 * Space : Big O(n)
