@@ -27,14 +27,7 @@ class LinkedList:
         return f'=> {values} '
 
 # - - ---- -- -- - - -- - -- -- - --- -- - -- --- -- -- ---- ---- ------ -hashtable part --------- -- - -- - - --
-'''
-Implement a Hashtable Class with the following methods:
-1. add
-    * Arguments: key, value
-    * Returns: nothing
-    * This method should hash the key, and add the key and value pair to the table, handling collisions as needed.
 
-''' 
 class Hashtable:
 
     def __init__(self,size=1024):
@@ -68,6 +61,7 @@ class Hashtable:
         else:
             # case we have linked list in that address 
             self._array[hshed_key].insert((key,value))
+        # print('the hased index ',hshed_key)
     def get(self,key):
         '''get Value associated with that key in the hashe table'''
         # Arguments: key
@@ -76,7 +70,7 @@ class Hashtable:
         hashed_key=self.hash(key) # index 
         if not self._array[hashed_key]:
             # emppty , no item 
-            return 'the key is not available '
+            return None
         else:
             '''we have item in this address inside the linkedlist '''
             self._array[hashed_key]
@@ -86,6 +80,7 @@ class Hashtable:
                     return temp.value[1]
                 else:
                     temp=temp.next
+            
     def contains(self,key):
         '''enter the key , if it exists , return true , if not , return flase'''
         hashed_key=self.hash(key)
@@ -93,12 +88,13 @@ class Hashtable:
             return False
         else :
             return True
+    
 if __name__=='__main__':
     ht=Hashtable()
-    ht.add('ahmad', 25)
-    ht.add('hamad', 29) 
-    ht.add('silent', True)
-    ht.add('listen', 'Hey man')
+    # ht.add('ahmad', 25)
+    # ht.add('hamad', 29) 
+    # ht.add('silent', True)
+    # ht.add('listen', 'Hey man')
     ht.add('nada', 'man')
     
     print(ht.get('silent'))
