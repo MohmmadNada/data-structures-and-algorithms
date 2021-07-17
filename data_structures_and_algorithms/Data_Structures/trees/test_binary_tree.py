@@ -1,5 +1,5 @@
 import pytest
-from tree import Node , BinaryTree,BinarySearch
+from tree import Node , BinaryTree,BinarySearch,breadthFirst
 
 def test_instance_empty_tree():
     '''
@@ -90,12 +90,12 @@ def test_fixure():
 # ------------------CC17 test -----------------
 
 def test_breath_first_Happy_Path(test_tree_breadth_first):
-    actual = test_tree_breadth_first.breadthFirst(test_tree_breadth_first)
+    actual = breadthFirst(test_tree_breadth_first)
     excepted =[2, 7, 5, 2, 6, 9, 5, 11, 4]
     assert actual ==excepted
 def test_breath_first_Happy_Path():
     Btree=BinaryTree()
-    actual= Btree.breadthFirst(Btree)
+    actual= breadthFirst(Btree)
     excepted = 'Empty Tree'
     assert actual ==excepted
     

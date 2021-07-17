@@ -4,7 +4,7 @@ add method in Binart tree ,by using Breadth-first approach traverse all nodesand
 
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
-![Breadth-first](/img/Breadth-first.PNG)
+![Breadth-first](/img/WhiteBoardCC17.PNG)
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
 use to array one for final result and one as temp nodes 
