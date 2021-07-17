@@ -16,3 +16,6 @@
 | CC17| [Breadth-first](data_structures_and_algorithms/Data_Structures/trees/find_max_tree.md)|
 | CC26| [insertion sort](data_structures_and_algorithms/challenges/insertion_sort/insertion_sort.md)|
 | CC27| [Marge sort](data_structures_and_algorithms/challenges/marge_sort/CC27READ.md)|
+| CC28| [Quick sort](data_structures_and_algorithms/challenges/quick_sort/readme_quick_sort.md)|
+| CC30| [Hash Table](data_structures_and_algorithms/Data_Structures/hashtable/READMEhashtable.md)|
+
