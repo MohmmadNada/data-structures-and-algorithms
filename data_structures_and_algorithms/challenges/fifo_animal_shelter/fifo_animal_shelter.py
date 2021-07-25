@@ -96,7 +96,7 @@ class AnimalShelter:
         current = None
         while not self.mainQueue.isEmpty():
             if self.mainQueue.front.value.type==pref  :
-                print('---------99')
+                # print('---------99')
                 # self.mainQueue.dequeue()
                 if current==None:
                     current= self.mainQueue.dequeue()
