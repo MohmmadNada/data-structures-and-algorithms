@@ -190,7 +190,7 @@ class BinarySearch(BinaryTree):
             while True:
                 if current.value == checkValue:
                     return True # will break the loop automaticly
-                if checkValue <= current.value:
+                if checkValue < current.value:
                     if current.left:
                         current=current.left
                         continue
