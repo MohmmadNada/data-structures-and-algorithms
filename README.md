@@ -18,4 +18,5 @@
 | CC28| [Quick sort](data_structures_and_algorithms/challenges/quick_sort/readme_quick_sort.md)|
 | CC30| [Hash Table](data_structures_and_algorithms/Data_Structures/hashtable/READMEhashtable.md)|
 | CC31| [ repeated word](data_structures_and_algorithms/challenges/repeated_word/read_repeated_word.md)|
+| CC32| [insertion tree](data_structures_and_algorithms/challenges/tree%20intersection/read_tree_intersection.md)|
 
