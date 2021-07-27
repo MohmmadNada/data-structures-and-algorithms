@@ -1,34 +1,12 @@
-# import pysnooper
-import re
-
-
-'''
-* Create a Binary Tree class
-    Define a method for each of the depth first traversals:
-        pre order
-        in order
-        post order which returns an array of the values, ordered appropriately.
-* Any exceptions or errors that come from your code should be semantic, capture-able errors. For example, rather than a default error thrown by your language, your code should raise/throw a custom, semantic error that describes what went wrong in calling the methods you wrote for this lab.
-Structure and Testing
-
-* Done
-* Done
-* Done
-* Done
-* Can successfully return a collection from an inorder traversal
-* Can successfully return a collection from a postorder traversal
-
-'''
-
-# depth first , pre order , from last depth , from left to right , use recursion
-
-
+# 1. add all element from first binary tree in one array 
+# 2. loop through the array and add loop to search in second binary tree , if exist add it to array  
 
 class Node:
     def __init__(self,value):
         self.value=value
         self.right=None
         self.left=None
+
 
 class BinaryTree:
     def __init__(self):
@@ -140,7 +118,6 @@ class BinaryTree:
                 currentNode = tempNodes[0]
                 
             return (resultValues)
-# Binary Search Tree method needs ; Add and Contains
 class BinarySearch(BinaryTree):
     # make the child class inherit all the methods and properties from its parent
     # @pysnooper.snoop()
@@ -203,36 +180,111 @@ class BinarySearch(BinaryTree):
                     else:# no right
                         return False
 
+'''
+# PESUDO CODE  :
 
+ALGORITHM treeInserction(tree1,tree2) do
+   treeelements=traverseTree(tree)
+   for i <- 0 to treeelements.length-1 do
+    checkElement = treeelements[0].value
+          current=root2
+   commonElement = []
+   while current do
+    if checkElement ==current.value
+                  commonElement.append(current.value)
+               if checkElement< current.value do
+     if current.left do
+       current = current.left
+     else:
+      break
+    if checkElement> current.value do
+       if current.right do
+             current = current.right
+          else:
+            break
+'''
+def preOrder(tree):
+    '''
+        return all value from tree as an array  , start reading from top to bottom ,root => left => right.
+    '''
+    outputArr=[]
+    if tree.root == None:
+        '''
+        1. empty tree ; return empty array  
+        '''
+        return outputArr
 
+    else:
+        '''
+        2. not empty tree case; loop and add all in array  
+        '''
+        def _traverse(node=tree.root): # 3. def _traverse function
+            nonlocal outputArr
+            outputArr.append(node.value)#4.  append node in array 
+            if node.left: # 5. check of we have left call the function 
+                _traverse(node.left)
+            if node.right:# 6. check of we have right call the function 
+                _traverse(node.right)
+            return outputArr# 7. return the array 
+        _traverse()# 4. call _traverse function
+    return outputArr
+def treeInserction(bt1,bt2):
+    '''Find all values found to be in 2 binary trees'''
+    # call the preOrder function to first array 
+    firstArrItems = preOrder(bt1)# [150, 100, 75, 160, 125, 175, 250, 200, 350, 300, 500]
+    # print('all array 1 items ',firstArrItems)
+    commonNumbers=[]
+    for x in firstArrItems:
+        # x is the value ; we want to check if the value in the second tree
+        # print(current)
+        current=bt2.root
+        print(x)
+        while current :# current=> 200       x => 150
+            if x == current.value:
+                # check if we added before 
+                if not x in commonNumbers:
+                    commonNumbers.append(x)
+                break
+            if x< current.value:
+                if current.left:
+                    current =current.left
+                    continue
+                else:
+                    break
+            if x> current.value:
+                if current.right:# 600
+                    current =current.right
+                    continue 
+                else:
+                    break
+    return commonNumbers
+            
 if __name__=='__main__':
-    # # Btree=BinaryTree()
-    # BST=BinarySearch()
-    # BST.root=Node(23)
-    # BST.root.left=Node(8)
-    # BST.root.right=Node(42)
-    # leftRoot=BST.root.left# 8
-    # rightRoot=BST.root.right# 42
-    # leftRoot.left=Node(4)
-    # leftRoot.right=Node(16)
-    # leftRoot.right.left=Node(15)
-    # leftRoot.right.right=Node(22)
-    # BST.root.right.left=Node(27)# 42 27 
-    # BST.root.right.right=Node(85)
-    # BST.root.right.right.right=Node(105)
-    # # print(BST.add('15')) # self.root = None ???
-    # print(BST.postOrder()) # 4815162223274285105
-    # # print(BST.contains(100))
-    # -------------- CC 17 
-    Btree=BinaryTree()
-    Btree=BinaryTree()
-    Btree.root=Node(2)
-    Btree.root.left=Node(7)
-    Btree.root.left.left=Node(2)
-    Btree.root.left.right=Node(6)
-    Btree.root.left.right.right=Node(11)
-    Btree.root.left.right.left=Node(5)
-    Btree.root.right=Node(5)
-    Btree.root.right.right=Node(9)
-    Btree.root.right.right.left=Node(4)
-    print(Btree.breadthFirst(Btree))
+    BT=BinarySearch()
+    BT.root=Node(150)
+    BT.root.left=Node(100)
+    BT.root.left.left=Node(75)
+    BT.root.left.right=Node(160)
+    BT.root.left.right.left=Node(125)
+    BT.root.left.right.right=Node(175)
+    BT.root.right=Node(250)
+    BT.root.right.left=Node(200)
+    BT.root.right.right=Node(350)
+    BT.root.right.right.left=Node(300)
+    BT.root.right.right.right=Node(500)
+    # print(preOrder(BT))# [150, 100, 75, 160, 125, 175, 250, 200, 350, 300, 500]
+    BT2=BinarySearch()
+    BT2.root=Node(42)
+    BT2.root.left=Node(100)
+    BT2.root.left.left=Node(15)
+    BT2.root.left.right=Node(160)
+    BT2.root.left.left=Node(125)
+    BT2.root.left.right=Node(185)
+    BT2.root.right=Node(600)
+    BT2.root.right.left=Node(200)
+    BT2.root.right.right=Node(350)
+    BT2.root.right.right.left=Node(4)
+    BT2.root.right.right.right=Node(500)
+    # print(preOrder(BT2))# [42, 100, 125, 175, 600, 200, 350, 4, 500]
+
+    print(treeInserction(BT,BT))
