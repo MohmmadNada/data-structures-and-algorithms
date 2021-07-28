@@ -1,3 +1,5 @@
+# from data_structures_and_algorithms.Data_Structures.hashtable.hashtable import *
+
 class Node:
     '''Class for the Node instances'''
     def __init__(self,value):
@@ -87,6 +89,8 @@ class Hashtable:
             return False
         else :
             return True
+
+# Code Challenge 33 
 def leftJoint(ht1,ht2): 
     outputArr=[] 
     for item in ht1._array:
@@ -104,35 +108,3 @@ def leftJoint(ht1,ht2):
                 current=current.next
                 outputArr.append(insideArr)
     return outputArr
-    
-if __name__=='__main__':
-    # ht=Hashtable()
-    # ht.add('silent', 'True')
-    # ht.add('ahmad', 25)
-    # ht.add('hamad', 29) 
-    # ht.add('listen', 'Hey man')
-    # ht.add('nada', 'man')
-    # ht2=Hashtable()
-    # ht3=Hashtable()
-    # ht2.add('silent', 'True2')
-    # ht2.add('sielnt', 'True2')
-    # ht2.add('nada', 'nada2')
-    # print(ht.get('silent'))
-    # print(str(enumerate(ht._array)))
-    # for index, item in enumerate(ht._array):# enumerate takes tuple => convert it to tuple in array  
-        
-    #     if item:#  [('hamad', 29), ('ahmad', 25)]
-    #         print(index, item)
-    ht1=Hashtable()
-    ht1.add('fond', 'enamored')
-    ht1.add('wrath', 'anger')
-    ht1.add('diligent', 'employed') 
-    ht1.add('outfit', 'garb')
-    ht1.add('guide', 'usher')
-    ht2=Hashtable()
-    # ht2.add('fond', 'averse')
-    # ht2.add('wrath', 'delight')
-    # ht2.add('diligent', 'idle')
-    # ht2.add('guide', 'follow')
-    # ht2.add('flow', 'jam')
-    print(leftJoint(ht1,ht2))
