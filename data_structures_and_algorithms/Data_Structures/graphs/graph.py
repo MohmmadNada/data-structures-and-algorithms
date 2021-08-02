@@ -93,7 +93,7 @@ class Queue :
          takes any value as an argument and adds a new node with that value to the back of the queue with an O(1) Time performance.
         '''
         newNode=Node(value)
-        if self.rear==None:
+        if self.front==None:
             self.rear=newNode
             self.front=newNode
         else:
@@ -206,20 +206,35 @@ class Graph:
     def BreadthFirst(self,startVertix):
         '''takes Vertix as argument; Return: A collection of nodes in the order they were visited.
         '''
+        if  startVertix not in self.adjacency_list :
+            raise KeyError('The vertix is not in Graph ')
         # 1. defind return array, queue , and visisted set 
         nodes = []
+        valueNodes = []
         breadth = Queue()
         visited= set()
+        testvisited=set()
         # 2. add to queue and set
         breadth.enqueue(startVertix)
         visited.add(startVertix)
+        testvisited.add(startVertix.value)
         # loop until queue is empty 
-        # while not breadth.isEmpty():
-        #     parentVertix=breadth.dequeue()
-        #     nodes+=[parentVertix]
-            
-        pass    
-
+        while breadth.front != None:
+            parentVertix=breadth.dequeue()
+            nodes.append(parentVertix)# change it to [parentVertix.value] 
+            valueNodes.append(parentVertix.value)# change it to [parentVertix.value] 
+            childVertices= self.adjacency_list[parentVertix] # array with dic items {edges as key weight value}
+            for child in childVertices:
+                childVertix=list(child.keys())[0]
+                if childVertix not in visited:
+                    visited.add(childVertix)
+                    testvisited.add(childVertix.value)
+                    breadth.enqueue(childVertix)
+        # print('visted => ', testvisited)
+        # print('Node => ',nodes)
+        # print('value Node => ',valueNodes)
+        return nodes
+        
         
 if __name__=='__main__':
     # newGraph=Graph()
@@ -236,11 +251,32 @@ if __name__=='__main__':
     # print(newGraph)
     # # print(newGraph.get_neighbors(a))
     # # print(newGraph)
+    # newGraph=Graph()
+    # a=newGraph.add_vertix('A')
+    # b=newGraph.add_vertix('B') 
+    # c=newGraph.add_vertix('C')
+    # d=newGraph.add_vertix('D')
+    # newGraph.add_adge(a,b,10)
+    # newGraph.add_adge(a,c)
+    # newGraph.add_adge(b,c)
+    # newGraph.add_adge(c,d)
+    # newGraph.BreadthFirst(a)
+    # # print(newGraph.get_vertix())
+    # test from CC37
     newGraph=Graph()
-    a=newGraph.add_vertix('A')
-    b=newGraph.add_vertix('B') 
-    c=newGraph.add_vertix('C')
-    newGraph.add_adge(a,b,10)
-    newGraph.add_adge(a,c)
-    newGraph.add_adge(b,c)
-    print(newGraph.get_vertix())
+    Pandora = newGraph.add_vertix('Pandora')
+    Arendelle = newGraph.add_vertix('Arendelle')
+    Metroville = newGraph.add_vertix('Metroville')
+    Monstroplolis = newGraph.add_vertix('Monstroplolis')
+    Narnia = newGraph.add_vertix('Narnia')
+    Naboo = newGraph.add_vertix('Naboo')
+    newGraph.add_adge(Pandora,Arendelle)
+    newGraph.add_adge(Arendelle,Metroville)
+    newGraph.add_adge(Arendelle,Monstroplolis)
+    newGraph.add_adge(Metroville,Narnia)
+    newGraph.add_adge(Metroville,Naboo)
+    newGraph.add_adge(Metroville,Monstroplolis)
+    newGraph.add_adge(Monstroplolis,Monstroplolis)
+    print(newGraph.BreadthFirst(Pandora))
+    pass
+

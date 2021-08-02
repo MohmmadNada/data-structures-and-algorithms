@@ -21,4 +21,4 @@
 | CC32| [insertion tree](data_structures_and_algorithms/challenges/tree%20intersection/read_tree_intersection.md)|
 | CC33| [hashmap left join](data_structures_and_algorithms/challenges/left_joint/read_left_joint.md)|
 | CC35| [Graphs](data_structures_and_algorithms/Data_Structures/graphs/read_graph.md)|
-
+| CC36| [Breadth First Graphs](data_structures_and_algorithms/Data_Structures/graphs/read_breath_first.md)|

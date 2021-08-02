@@ -64,3 +64,49 @@ def test_empty_graph():
     '''An empty graph properly returns null'''
     newGraph=Graph()
     assert newGraph.size()==0
+
+
+
+# from CC36 Breadth first 
+
+def test_breath_first():
+    newGraph=Graph()
+    Pandora = newGraph.add_vertix('Pandora')
+    Arendelle = newGraph.add_vertix('Arendelle')
+    Metroville = newGraph.add_vertix('Metroville')
+    Monstroplolis = newGraph.add_vertix('Monstroplolis')
+    Narnia = newGraph.add_vertix('Narnia')
+    Naboo = newGraph.add_vertix('Naboo')
+    newGraph.add_adge(Pandora,Arendelle)
+    newGraph.add_adge(Arendelle,Metroville)
+    newGraph.add_adge(Arendelle,Monstroplolis)
+    newGraph.add_adge(Metroville,Narnia)
+    newGraph.add_adge(Metroville,Naboo)
+    newGraph.add_adge(Metroville,Monstroplolis)
+    allVertices=newGraph.BreadthFirst(Pandora)
+    valueVertices=[o.value for o in allVertices]
+    assert valueVertices == ['Pandora', 'Arendelle', 'Metroville', 'Monstroplolis', 'Narnia', 'Naboo']
+def test_breath_with_loop_connect():
+    newGraph=Graph()
+    Pandora = newGraph.add_vertix('Pandora')
+    Arendelle = newGraph.add_vertix('Arendelle')
+    Metroville = newGraph.add_vertix('Metroville')
+    Monstroplolis = newGraph.add_vertix('Monstroplolis')
+    Narnia = newGraph.add_vertix('Narnia')
+    Naboo = newGraph.add_vertix('Naboo')
+    newGraph.add_adge(Pandora,Arendelle)
+    newGraph.add_adge(Arendelle,Metroville)
+    newGraph.add_adge(Arendelle,Monstroplolis)
+    newGraph.add_adge(Metroville,Narnia)
+    newGraph.add_adge(Metroville,Naboo)
+    newGraph.add_adge(Metroville,Monstroplolis)
+    newGraph.add_adge(Monstroplolis,Monstroplolis)# new connect 
+    allVertices=newGraph.BreadthFirst(Pandora)
+    valueVertices=[o.value for o in allVertices]
+    assert valueVertices == ['Pandora', 'Arendelle', 'Metroville', 'Monstroplolis', 'Narnia', 'Naboo']
+
+def test_breath_first_vertix_not_in_graph():
+    newGraph=Graph()
+    Pandora = newGraph.add_vertix('Pandora')
+    with pytest.raises(KeyError):
+        newGraph.BreadthFirst('not in ')
