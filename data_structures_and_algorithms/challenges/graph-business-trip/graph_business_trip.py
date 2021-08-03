@@ -189,20 +189,20 @@ class Graph:
     def get_neighbors(self,sourceVertix):
         '''Returns a collection of edges connected to the given node,Include the weight of the connection in the returned collection'''
         vertixKey=self.adjacency_list[sourceVertix] # [{VertixConnected: weight}, {VertixConnected: weight}]
-        return vertixKey
+        return vertixKey 
     def size(self):
         '''Returns the total number of nodes in the graph'''
         return len(self.adjacency_list)
         # return self.adjacency_list
-    def __str__(self):
-        outPut=''# empty string 
-        for vertix in self.adjacency_list:# loop throgh the vertix keys 
-            outPut += str(vertix) + 'connect with =>  ' # add Node(vertix value) to outPut str
-            for edge in self.adjacency_list[vertix]:# array with connect vertices and weights
-                outPut+=str(list(edge.keys())[0])+' the weight is '+str(list(edge.values())[0]) + ' , '
-                # print()
-            outPut+='\n'
-        return outPut
+    # def __str__(self):
+    #     outPut=''# empty string 
+    #     for vertix in self.adjacency_list:# loop throgh the vertix keys 
+    #         outPut += str(vertix) + 'connect with =>  ' # add Node(vertix value) to outPut str
+    #         for edge in self.adjacency_list[vertix]:# array with connect vertices and weights
+    #             outPut+=str(list(edge.keys())[0])+' the weight is '+str(list(edge.values())[0]) + ' , '
+    #             # print()
+    #         outPut+='\n'
+    #     return outPut
     def BreadthFirst(self,startVertix):
         '''takes Vertix as argument; Return: A collection of nodes in the order they were visited.
         '''
@@ -234,14 +234,61 @@ class Graph:
         # print('Node => ',nodes)
         # print('value Node => ',valueNodes)
         return nodes
-def businesstTrip(graph,pathArr):
-    totalPrice=0
-    # print(type(pathArr))
-    for city in pathArr:
-        if graph.adjacency_list[]:
+def MakeDictStr(graph):
+    ''' takes graph as Arg and return dic with all vertices as key and value another dict {connectvertix:weight}
+    '''
+    vericesCities=graph.get_vertix()# list of cities but vertices 
+    allCityValue={}# list of cities  as string 
+    for cityVertix in vericesCities:
+        allCityValue[cityVertix.value]={}
+        # allCityValue[cityVertix.value][thecityconnect]=weight
+        connectedVertic=graph.get_neighbors(cityVertix)# [{VertixConnected: weight}, {VertixConnected: weight}]
+        for connectVertix in connectedVertic:
+            keyCityConnect=list(connectVertix.keys())
+            keyCityConnect=keyCityConnect[0].value
+            weightCityConnected=list(connectVertix.values())
+            weightCityConnected=weightCityConnected[0]
+            allCityValue[cityVertix.value][keyCityConnect]=weightCityConnected
+            connectedVlue=[]
+        for vertic in connectedVertic:
+            connectedVlue=connectedVlue + [[list(vertic.keys())[0].value]+[list(vertic.values())] ]
+    return allCityValue
+def dirctToUndirct(graph):
+    '''takes graph and return dict keys is vertic as str and value:dict(keys is connect vertix and value weight)
+    return new dict with link every vertix was connect in two way
+    '''
+    giniralGraph=MakeDictStr(graph)
+    for fromCity ,connectCity in giniralGraph.items():
+        # print('the city is =>',fromCity ,'\n', connectCity )
 
-            pass
-        
+        for connected ,weight in connectCity.items ():
+            giniralGraph[connected][fromCity]=weight
+            # print('connected' ,connected,'the weight is ',weight)
+    return giniralGraph
+    
+def businesstTrip(graph,pathArray):
+    undirectedGraph=dirctToUndirct(graph)#parent dict
+    totalPrice=0
+    if len(pathArray)<=1:
+        return None
+
+    for i in range(len(pathArray)):
+        if  pathArray[i] not in undirectedGraph:# city not in graph 
+            raise ValueError(f'City {pathArray[i]}not in graph')
+        else:
+            dir_connected=undirectedGraph[pathArray[i]]# child dict
+            # print(dir_connected)
+            if i+1 < len(pathArray):
+                if pathArray[i+1] not in undirectedGraph:
+                    raise ValueError(f'City {pathArray[i+1]} not in graph')
+                if  not dir_connected[pathArray[i+1]]:
+                    return None
+                else:
+                    totalPrice+=dir_connected.get(pathArray[i+1])               
+
+    return totalPrice
+            
+
 if __name__=='__main__':
     # newGraph=Graph()
     # a=newGraph.add_vertix('A')# 1
@@ -270,18 +317,19 @@ if __name__=='__main__':
     # # print(newGraph.get_vertix())
     # test from CC37
     newGraph=Graph()
-    Pandora = newGraph.add_vertix('Pandora')
-    Arendelle = newGraph.add_vertix('Arendelle')
-    Metroville = newGraph.add_vertix('Metroville')
-    Monstroplolis = newGraph.add_vertix('Monstroplolis')
-    Narnia = newGraph.add_vertix('Narnia')
-    Naboo = newGraph.add_vertix('Naboo')
-    newGraph.add_adge(Pandora,Arendelle)
-    newGraph.add_adge(Arendelle,Metroville)
-    newGraph.add_adge(Arendelle,Monstroplolis)
-    newGraph.add_adge(Metroville,Narnia)
-    newGraph.add_adge(Metroville,Naboo)
-    newGraph.add_adge(Metroville,Monstroplolis)
-    newGraph.add_adge(Monstroplolis,Monstroplolis)
-    businesstTrip(newGraph,['Pandora'])
+    A = newGraph.add_vertix('A')
+    B = newGraph.add_vertix('B')
+    M = newGraph.add_vertix('M')
+    M2 = newGraph.add_vertix('M2')
+    N = newGraph.add_vertix('N')
+    N2 = newGraph.add_vertix('N2')
+    newGraph.add_adge(A,B,150)
+    newGraph.add_adge(A,M,82)
+    newGraph.add_adge(B,N,99)
+    newGraph.add_adge(B,M2,42)
+    newGraph.add_adge(M,M2,105)
+    newGraph.add_adge(N2,M2,73)
+    newGraph.add_adge(N,N2,250)
+    print(businesstTrip(newGraph,['N2','M2','M','S']))
+    # check the length 
 
