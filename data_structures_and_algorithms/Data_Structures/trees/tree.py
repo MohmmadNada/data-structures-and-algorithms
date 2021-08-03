@@ -22,13 +22,70 @@ Structure and Testing
 
 # depth first , pre order , from last depth , from left to right , use recursion
 
-
-
 class Node:
     def __init__(self,value):
         self.value=value
         self.right=None
         self.left=None
+
+class Queue :
+    def __init__(self):
+        '''
+        This object should be aware of a default empty value assigned to front when the queue is created.
+        '''
+        self.front=None
+        self.rear=None
+    def enqueue(self,value):
+        '''
+         takes any value as an argument and adds a new node with that value to the back of the queue with an O(1) Time performance.
+        '''
+        newNode=Node(value)
+        if self.rear==None:
+            self.rear=newNode
+            self.front=newNode
+        else:
+            self.rear.next=newNode
+            self.rear=newNode
+    def dequeue (self):
+        '''
+        Define a method called dequeue that does not take any argument, removes the node from the front of the queue, and returns the node’s value. Should raise exception when called on empty queue
+        '''
+        # try:
+            # if self.rear==None:
+            #     raise Exception('THIS Queue is Empty')
+            # else:
+        if self.front==self.rear:
+            temp=self.front
+            temp.next=None
+            self.front=None
+            self.rear=None
+        else:
+            temp=self.front
+            self.front=self.front.next
+            temp.next=None
+        return temp.value
+        # except ValueError:
+        #     return 'Oops  , empty Queue'
+    def peek(self):
+        '''
+        does not take an argument and returns the value of the node located in the front of the queue, without removing it from the queue. Should raise exception when called on empty queue
+        '''
+        try:
+            if self.front==None:
+                raise Exception('Oop`s This Queue is Empty ')
+            else:
+                temp=self.front
+                return temp.value
+        except AttributeError:
+            return 'the queue is empty '
+    def isEmpty(self):
+        '''
+        Define a method called isEmpty that takes no argument, and returns a boolean indicating whether or not the queue is empty.
+        '''
+        if self.front==None:
+            return True
+        else:
+            return False
 
 class BinaryTree:
     def __init__(self):
@@ -118,28 +175,47 @@ class BinaryTree:
                 return outputArr
             _traverse()
         return max(outputArr)
-    @staticmethod
-    def breadthFirst (tree):
-        if tree.root== None:
-            return 'Empty Tree'
-        else: 
-            resultValues ,tempNodes = [],[]
-            tempNodes.append(tree.root)
-            resultValues.append(tree.root.value)
-            currentNode = tree.root
-            while currentNode:
-                tempNodes.pop(0) 
-                if currentNode.left:
-                    resultValues.append(currentNode.left.value)
-                    tempNodes.append(currentNode.left)
-                if currentNode.right:
-                    resultValues.append(currentNode.right.value)
-                    tempNodes.append(currentNode.right)
-                if len(tempNodes)==0:
-                    break
-                currentNode = tempNodes[0]
-                
-            return (resultValues)
+def breadthFirst (tree):
+    if tree.root==None:
+        return 'Empty Tree'
+    else: # in case not empty  
+        queue=Queue()
+        nodesList=[]
+        currentNode=tree.root# node 2       keep in mind ,queue.front.value.value  queue.front.value.left
+        queue.enqueue(currentNode)
+        nodesList.append(queue.front.value.value)
+        while not queue.isEmpty():
+            queue.dequeue()
+            if currentNode.left:
+                queue.enqueue(currentNode.left)
+            if currentNode.right:
+                queue.enqueue(currentNode.right)
+            if queue.front:
+                currentNode=queue.front.value
+                nodesList.append(currentNode.value)
+        return nodesList
+        
+'''
+first version traverse 
+
+def  fizz_buzz_tree(tree):
+
+
+if tree.root:# not empty tree
+    currentNode=tree.root
+    queue.enqueue(currentNode)
+    while not queue.isEmpty():# not empty queue
+        queue.dequeue()
+        if len(currentNode.Children)!=0:
+            for childNodes in currentNode.Children:
+                queue.enqueue(childNodes)
+            currentNode=queue.front.value
+        
+
+else: 
+    return newKtree
+'''
+
 # Binary Search Tree method needs ; Add and Contains
 class BinarySearch(BinaryTree):
     # make the child class inherit all the methods and properties from its parent
@@ -235,4 +311,5 @@ if __name__=='__main__':
     Btree.root.right=Node(5)
     Btree.root.right.right=Node(9)
     Btree.root.right.right.left=Node(4)
-    print(Btree.breadthFirst(Btree))
+    print(breadthFirst(Btree))
+
