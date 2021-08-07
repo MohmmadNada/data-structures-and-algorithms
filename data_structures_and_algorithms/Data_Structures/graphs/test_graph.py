@@ -32,29 +32,30 @@ def test_get_neighbors():
     assert list(actual[0].keys())[0].value =='B'
     assert  actual1 ==excepted1
 
-def test_all_verices():
-    '''A collection of all nodes can be properly retrieved from the graph'''
-    '''All appropriate neighbors can be retrieved from the graph'''
-    '''Neighbors are returned with the weight between nodes included'''
-    newGraph=Graph()
-    a=newGraph.add_vertix('A')
-    b=newGraph.add_vertix('B') 
-    # c=newGraph.add_vertix('C')
-    newGraph.add_adge(a,b,10)
-    # newGraph.add_adge(a,b)
-    # newGraph.add_adge(b,c)
-    assert str(newGraph)=="value > A connect with =>  value > B  the weight is 10 , \nvalue > B connect with =>  \n"
+# def test_all_verices():
+#     '''A collection of all nodes can be properly retrieved from the graph'''
+#     '''All appropriate neighbors can be retrieved from the graph'''
+#     '''Neighbors are returned with the weight between nodes included'''
+#     newGraph=Graph()
+#     a=newGraph.add_vertix('A')
+#     b=newGraph.add_vertix('B') 
+#     # c=newGraph.add_vertix('C')
+#     newGraph.add_adge(a,b,10)
+#     # newGraph.add_adge(a,b)
+#     # newGraph.add_adge(b,c)
+#     "A > "
+#     assert str(newGraph)=="value > A connect with =>  value > B  the weight is 10 , \nvalue > B connect with =>  \n"
 
 def test_graph_with_one_vertix():
     '''A graph with only one node and edge can be properly returned'''
     newGraph=Graph()
     a=newGraph.add_vertix('A')
     assert newGraph.get_neighbors(a)==[]
-    listVertic=newGraph.get_vertix()
+    listVertic=newGraph.get_vertices()
     assert listVertic[0].value=='A'
 
 def test_all_vertices(basicGraph):
-    actual=basicGraph.get_vertix()
+    actual=basicGraph.get_vertices()
     excepted = ['A','B','C']
     i=0
     for vertix in actual :
@@ -110,3 +111,52 @@ def test_breath_first_vertix_not_in_graph():
     Pandora = newGraph.add_vertix('Pandora')
     with pytest.raises(KeyError):
         newGraph.BreadthFirst('not in ')
+
+def test_depthFirst():
+    newGraph=Graph()
+    A = newGraph.add_vertix('A')
+    B = newGraph.add_vertix('B')
+    C = newGraph.add_vertix('C')
+    G = newGraph.add_vertix('G')
+    D = newGraph.add_vertix('D')
+    E = newGraph.add_vertix('E')
+    H = newGraph.add_vertix('H')
+    F = newGraph.add_vertix('F')
+    newGraph.add_adge(A,B)
+    newGraph.add_adge(B,C)
+    newGraph.add_adge(C,G)
+    newGraph.add_adge(A,D)
+    newGraph.add_adge(D,E)
+    newGraph.add_adge(D,H)
+    newGraph.add_adge(D,F)
+    newGraph.add_adge(F,H)    
+    newGraph.depthFirst(A)
+    assert newGraph.depthFirst(A) == ['A', 'B', 'C', 'G', 'D', 'E', 'H', 'F']
+
+def test_depthFirst_vertix_not_in_Graph():
+    newGraph=Graph()
+    Pandora = newGraph.add_vertix('Pandora')
+    with pytest.raises(KeyError):
+        newGraph.depthFirst('not in vretix')
+def test_depthFirst_disconnect_vertix():
+    newGraph=Graph()
+    A = newGraph.add_vertix('A')
+    B = newGraph.add_vertix('B')
+    C = newGraph.add_vertix('C')
+    G = newGraph.add_vertix('G')
+    Z = newGraph.add_vertix('Z')# disconnect
+    D = newGraph.add_vertix('D')
+    E = newGraph.add_vertix('E')
+    H = newGraph.add_vertix('H')
+    F = newGraph.add_vertix('F')
+    newGraph.add_adge(A,B)
+    newGraph.add_adge(B,C)
+    newGraph.add_adge(C,G)
+    newGraph.add_adge(A,D)
+    newGraph.add_adge(D,E)
+    newGraph.add_adge(E,H)
+    newGraph.add_adge(D,H)
+    newGraph.add_adge(D,F)
+    newGraph.add_adge(F,H)        
+    newGraph.depthFirst(A)
+    assert newGraph.depthFirst(A) == ['A', 'B', 'C', 'G', 'D', 'E', 'H', 'F']

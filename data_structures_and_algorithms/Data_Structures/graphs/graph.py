@@ -141,7 +141,7 @@ class Vertix:
         '''
         self.value=value
     def __str__(self):
-        return f'value > {self.value} '
+        return f'{self.value} > '
 class Edges:
     def __init__(self,vertix,weight=None):
         self.vertix = vertix
@@ -180,7 +180,7 @@ class Graph:
         self.adjacency_list[start_vertix]+=[{end_vertix:weight}]# its end_vertix not vertix.value
         # 2. Returns: nothing
         # 4. If specified, assign a weight to the edge
-    def get_vertix(self):
+    def get_vertices(self):
         '''No argument needed;Returns all of the nodes in the graph as a collection list'''
         allVertices=list(self.adjacency_list.keys())
         
@@ -234,6 +234,25 @@ class Graph:
         # print('Node => ',nodes)
         # print('value Node => ',valueNodes)
         return nodes
+    def depthFirst(self,startSearchNode):
+        if  startSearchNode not in self.adjacency_list :
+            raise KeyError('The vertix is not in Graph ')
+        stackContainer=Stack()
+        collectionArr=[]
+        stackContainer.push(startSearchNode)
+        while not stackContainer.isEmpty():
+            current=stackContainer.pop()
+            if current.value not in collectionArr:
+                collectionArr.append(current.value)
+            while self.get_neighbors(current):
+                verticesConnectedDict=list(self.get_neighbors(current))
+                for vertex in  verticesConnectedDict[::-1]:
+                    stackContainer.push(list(vertex)[0])
+                    current = list(vertex)[0]
+                if current.value not in collectionArr:
+                    collectionArr.append(current.value)
+        print(collectionArr)
+        return collectionArr
         
         
 if __name__=='__main__':
@@ -261,22 +280,28 @@ if __name__=='__main__':
     # newGraph.add_adge(b,c)
     # newGraph.add_adge(c,d)
     # newGraph.BreadthFirst(a)
-    # # print(newGraph.get_vertix())
+    # # print(newGraph.get_vertices())
     # test from CC37
     newGraph=Graph()
-    Pandora = newGraph.add_vertix('Pandora')
-    Arendelle = newGraph.add_vertix('Arendelle')
-    Metroville = newGraph.add_vertix('Metroville')
-    Monstroplolis = newGraph.add_vertix('Monstroplolis')
-    Narnia = newGraph.add_vertix('Narnia')
-    Naboo = newGraph.add_vertix('Naboo')
-    newGraph.add_adge(Pandora,Arendelle)
-    newGraph.add_adge(Arendelle,Metroville)
-    newGraph.add_adge(Arendelle,Monstroplolis)
-    newGraph.add_adge(Metroville,Narnia)
-    newGraph.add_adge(Metroville,Naboo)
-    newGraph.add_adge(Metroville,Monstroplolis)
-    newGraph.add_adge(Monstroplolis,Monstroplolis)
-    print(newGraph.BreadthFirst(Pandora))
+    A = newGraph.add_vertix('A')
+    B = newGraph.add_vertix('B')
+    C = newGraph.add_vertix('C')
+    G = newGraph.add_vertix('G')
+    D = newGraph.add_vertix('D')
+    E = newGraph.add_vertix('E')
+    H = newGraph.add_vertix('H')
+    F = newGraph.add_vertix('F')
+    newGraph.add_adge(A,B)
+    # newGraph.add_adge(B,A)
+    newGraph.add_adge(B,C)
+    newGraph.add_adge(C,G)
+    newGraph.add_adge(A,D)
+    newGraph.add_adge(D,E)
+    newGraph.add_adge(D,H)
+    newGraph.add_adge(D,F)
+    newGraph.add_adge(F,H)
+    
+    # print(newGraph.BreadthFirst(A))
+    newGraph.depthFirst('a')
     pass
 
