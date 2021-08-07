@@ -141,7 +141,7 @@ class Vertix:
         '''
         self.value=value
     def __str__(self):
-        return f'{self.value} > '
+        return f'value > {self.value} '
 class Edges:
     def __init__(self,vertix,weight=None):
         self.vertix = vertix
@@ -180,7 +180,7 @@ class Graph:
         self.adjacency_list[start_vertix]+=[{end_vertix:weight}]# its end_vertix not vertix.value
         # 2. Returns: nothing
         # 4. If specified, assign a weight to the edge
-    def get_vertices(self):
+    def get_vertix(self):
         '''No argument needed;Returns all of the nodes in the graph as a collection list'''
         allVertices=list(self.adjacency_list.keys())
         
@@ -189,20 +189,20 @@ class Graph:
     def get_neighbors(self,sourceVertix):
         '''Returns a collection of edges connected to the given node,Include the weight of the connection in the returned collection'''
         vertixKey=self.adjacency_list[sourceVertix] # [{VertixConnected: weight}, {VertixConnected: weight}]
-        return vertixKey
+        return vertixKey 
     def size(self):
         '''Returns the total number of nodes in the graph'''
         return len(self.adjacency_list)
         # return self.adjacency_list
-    def __str__(self):
-        outPut=''# empty string 
-        for vertix in self.adjacency_list:# loop throgh the vertix keys 
-            outPut += str(vertix) + 'connect with =>  ' # add Node(vertix value) to outPut str
-            for edge in self.adjacency_list[vertix]:# array with connect vertices and weights
-                outPut+=str(list(edge.keys())[0])+' the weight is '+str(list(edge.values())[0]) + ' , '
-                # print()
-            outPut+='\n'
-        return outPut
+    # def __str__(self):
+    #     outPut=''# empty string 
+    #     for vertix in self.adjacency_list:# loop throgh the vertix keys 
+    #         outPut += str(vertix) + 'connect with =>  ' # add Node(vertix value) to outPut str
+    #         for edge in self.adjacency_list[vertix]:# array with connect vertices and weights
+    #             outPut+=str(list(edge.keys())[0])+' the weight is '+str(list(edge.values())[0]) + ' , '
+    #             # print()
+    #         outPut+='\n'
+    #     return outPut
     def BreadthFirst(self,startVertix):
         '''takes Vertix as argument; Return: A collection of nodes in the order they were visited.
         '''
@@ -234,27 +234,61 @@ class Graph:
         # print('Node => ',nodes)
         # print('value Node => ',valueNodes)
         return nodes
-    def depthFirst(self,startSearchNode):
-        if  startSearchNode not in self.adjacency_list :
-            raise KeyError('The vertix is not in Graph ')
-        stackContainer=Stack()
-        collectionArr=[]
-        stackContainer.push(startSearchNode)
-        while not stackContainer.isEmpty():
-            current=stackContainer.pop()
-            if current.value not in collectionArr:
-                collectionArr.append(current.value)
-            while self.get_neighbors(current):
-                verticesConnectedDict=list(self.get_neighbors(current))
-                for vertex in  verticesConnectedDict[::-1]:
-                    stackContainer.push(list(vertex)[0])
-                    current = list(vertex)[0]
-                if current.value not in collectionArr:
-                    collectionArr.append(current.value)
-        print(collectionArr)
-        return collectionArr
-        
-        
+def MakeDictStr(graph):
+    ''' takes graph as Arg and return dic with all vertices as key and value another dict {connectvertix:weight}
+    '''
+    vericesCities=graph.get_vertix()# list of cities but vertices 
+    allCityValue={}# list of cities  as string 
+    for cityVertix in vericesCities:
+        allCityValue[cityVertix.value]={}
+        # allCityValue[cityVertix.value][thecityconnect]=weight
+        connectedVertic=graph.get_neighbors(cityVertix)# [{VertixConnected: weight}, {VertixConnected: weight}]
+        for connectVertix in connectedVertic:
+            keyCityConnect=list(connectVertix.keys())
+            keyCityConnect=keyCityConnect[0].value
+            weightCityConnected=list(connectVertix.values())
+            weightCityConnected=weightCityConnected[0]
+            allCityValue[cityVertix.value][keyCityConnect]=weightCityConnected
+            connectedVlue=[]
+        for vertic in connectedVertic:
+            connectedVlue=connectedVlue + [[list(vertic.keys())[0].value]+[list(vertic.values())] ]
+    return allCityValue
+def dirctToUndirct(graph):
+    '''takes graph and return dict keys is vertic as str and value:dict(keys is connect vertix and value weight)
+    return new dict with link every vertix was connect in two way
+    '''
+    giniralGraph=MakeDictStr(graph)
+    for fromCity ,connectCity in giniralGraph.items():
+        # print('the city is =>',fromCity ,'\n', connectCity )
+
+        for connected ,weight in connectCity.items ():
+            giniralGraph[connected][fromCity]=weight
+            # print('connected' ,connected,'the weight is ',weight)
+    return giniralGraph
+    
+def businesstTrip(graph,pathArray):
+    undirectedGraph=dirctToUndirct(graph)#parent dict
+    totalPrice=0
+    if len(pathArray)<=1:
+        return None
+
+    for i in range(len(pathArray)):
+        if  pathArray[i] not in undirectedGraph:# city not in graph 
+            raise ValueError(f'City {pathArray[i]}not in graph')
+        else:
+            dir_connected=undirectedGraph[pathArray[i]]# child dict
+            # print(dir_connected)
+            if i+1 < len(pathArray):
+                if pathArray[i+1] not in undirectedGraph:
+                    raise ValueError(f'City {pathArray[i+1]} not in graph')
+                if  not dir_connected[pathArray[i+1]]:
+                    return None
+                else:
+                    totalPrice+=dir_connected.get(pathArray[i+1])               
+
+    return totalPrice
+            
+
 if __name__=='__main__':
     # newGraph=Graph()
     # a=newGraph.add_vertix('A')# 1
@@ -280,28 +314,22 @@ if __name__=='__main__':
     # newGraph.add_adge(b,c)
     # newGraph.add_adge(c,d)
     # newGraph.BreadthFirst(a)
-    # # print(newGraph.get_vertices())
+    # # print(newGraph.get_vertix())
     # test from CC37
     newGraph=Graph()
     A = newGraph.add_vertix('A')
     B = newGraph.add_vertix('B')
-    C = newGraph.add_vertix('C')
-    G = newGraph.add_vertix('G')
-    D = newGraph.add_vertix('D')
-    E = newGraph.add_vertix('E')
-    H = newGraph.add_vertix('H')
-    F = newGraph.add_vertix('F')
-    newGraph.add_adge(A,B)
-    # newGraph.add_adge(B,A)
-    newGraph.add_adge(B,C)
-    newGraph.add_adge(C,G)
-    newGraph.add_adge(A,D)
-    newGraph.add_adge(D,E)
-    newGraph.add_adge(D,H)
-    newGraph.add_adge(D,F)
-    newGraph.add_adge(F,H)
-    
-    # print(newGraph.BreadthFirst(A))
-    newGraph.depthFirst('a')
-    pass
+    M = newGraph.add_vertix('M')
+    M2 = newGraph.add_vertix('M2')
+    N = newGraph.add_vertix('N')
+    N2 = newGraph.add_vertix('N2')
+    newGraph.add_adge(A,B,150)
+    newGraph.add_adge(A,M,82)
+    newGraph.add_adge(B,N,99)
+    newGraph.add_adge(B,M2,42)
+    newGraph.add_adge(M,M2,105)
+    newGraph.add_adge(N2,M2,73)
+    newGraph.add_adge(N,N2,250)
+    print(businesstTrip(newGraph,['N2','M2','M','S']))
+    # check the length 
 
